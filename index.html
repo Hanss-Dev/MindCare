@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindCare - Kesehatan Mental Mahasiswa</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header & Navigation -->
+  <header class="header transparent" id="header">
+    <nav class="nav container">
+      <a href="" class="nav__logo">
+        <img src="assets/img/logo1.png" alt="Logo">
+        <span class="logo-text">MindCare</span>
+      </a>
+      <div class="nav__menu" id="nav-menu">
+        <ul class="nav__list">
+          <li><a href="#home" class="nav__link">Beranda</a></li>
+          <li><a href="#assessment" class="nav__link">Assessment</a></li>
+          <li><a href="#artikel" class="nav__link">Artikel</a></li>
+          <li><a href="#tips" class="nav__link">Tips</a></li>
+          <li><a href="#tentang" class="nav__link">Tentang Kami</a></li>
+        </ul>
+      </div>
+      <div class="nav__toggle" id="nav-toggle">
+        <i class="ri-menu-line nav__burger"></i>
+        <i class="ri-close-line nav__close"></i>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Slider Section -->
+  <div class="hero-slider" id="home">
+    <div class="slider">
+      <div class="slide active">
+        <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1920&q=80" alt="Mental Health">
+        <div class="slide-text">
+          <h2>Kenali Kondisi Mentalmu</h2>
+          <p class="desc">Evaluasi mandiri yang aman, rahasia, dan edukatif untuk kesehatan mental mahasiswa.</p>
+          <a href="#assessment" class="btn">Mulai Assessment</a>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1920&q=80" alt="Support">
+        <div class="slide-text">
+          <h2>Kamu Tidak Sendirian</h2>
+          <p class="desc">Dapatkan dukungan dan informasi untuk menjaga kesehatan mental selama kuliah.</p>
+          <a href="#tips" class="btn">Lihat Tips</a>
+        </div>
+      </div>
+    </div>
+    <button class="prev" onclick="changeSlide(-1)">❮</button>
+    <button class="next" onclick="changeSlide(1)">❯</button>
+    <div class="dots" id="dots"></div>
+  </div>
+
+  <!-- Assessment Tools Section -->
+  <section id="assessment" class="assessment-section">
+    <div class="container">
+      <h2 class="section-title">Alat Evaluasi Kesehatan Mental</h2>
+      <p class="section-desc">Gunakan alat-alat berikut untuk evaluasi mandiri kondisi kesehatan mental Anda</p>
+
+      <!-- PHQ-9 (Depresi) -->
+      <div class="assessment-card" id="phq9">
+        <div class="assessment-header">
+          <h3>📋 PHQ-9 (Depresi)</h3>
+          <p>Questionnaire untuk mengevaluasi gejala depresi dalam 2 minggu terakhir</p>
+        </div>
+        <form id="phqForm" class="assessment-form"></form>
+        <div id="phqResult" class="result-box hidden"></div>
+      </div>
+
+      <!-- GAD-7 (Kecemasan) -->
+      <div class="assessment-card" id="gad7">
+        <div class="assessment-header">
+          <h3>😰 GAD-7 (Kecemasan)</h3>
+          <p>Questionnaire untuk mengevaluasi tingkat kecemasan dalam 2 minggu terakhir</p>
+        </div>
+        <form id="gadForm" class="assessment-form"></form>
+        <div id="gadResult" class="result-box hidden"></div>
+      </div>
+
+      <!-- Tes Tingkat Stres -->
+      <div class="assessment-card" id="stress">
+        <div class="assessment-header">
+          <h3>😓 Tes Tingkat Stres</h3>
+          <p>Evaluasi tingkat stres yang Anda alami saat ini</p>
+        </div>
+        <form id="stressForm" class="assessment-form"></form>
+        <div id="stressResult" class="result-box hidden"></div>
+      </div>
+
+      <!-- Mood Tracker -->
+      <div class="assessment-card" id="mood">
+        <div class="assessment-header">
+          <h3>😊 Mood Tracker Harian</h3>
+          <p>Catat mood Anda setiap hari untuk memantau perubahan emosi</p>
+        </div>
+        <div class="mood-tracker">
+          <div class="mood-buttons">
+            <button onclick="saveMood('😄')" class="mood-btn" title="Sangat Bahagia">😄</button>
+            <button onclick="saveMood('🙂')" class="mood-btn" title="Bahagia">🙂</button>
+            <button onclick="saveMood('😐')" class="mood-btn" title="Netral">😐</button>
+            <button onclick="saveMood('😔')" class="mood-btn" title="Sedih">😔</button>
+            <button onclick="saveMood('😢')" class="mood-btn" title="Sangat Sedih">😢</button>
+          </div>
+          <p id="moodLog" class="mood-log"></p>
+        </div>
+      </div>
+
+      <!-- Bantuan Darurat -->
+      <div class="emergency-help">
+        <h3>🚨 Bantuan Darurat</h3>
+        <div class="help-content">
+          <p>Jika kamu merasa tidak aman atau memiliki pikiran untuk menyakiti diri sendiri:</p>
+          <ul class="help-list">
+            <li>📞 <strong>119 ext. 8</strong> - Layanan Kesehatan Jiwa Indonesia</li>
+            <li>📞 <strong>021-500-454</strong> - Into The Light Indonesia (24/7)</li>
+            <li>🏥 Kunjungi IGD atau fasilitas kesehatan terdekat</li>
+            <li>🤝 Hubungi orang terpercaya (keluarga/teman)</li>
+          </ul>
+          <p class="note">💙 Kamu tidak sendirian. Bantuan tersedia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Artikel Edukasi -->
+  <section class="edu-articles" id="artikel">
+    <div class="container">
+      <h2 class="section-title">Artikel Edukasi</h2>
+      <p class="section-desc">Kumpulan artikel dan tips kesehatan mental untuk mahasiswa</p>
+
+      <div class="articles-grid">
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=600&q=80" alt="Artikel Stres">
+          <div class="article-content">
+            <h3>Cara Mengelola Stres</h3>
+            <p>Teknik praktis yang bisa dilakukan dalam 5 menit untuk mengurangi stres sehari-hari.</p>
+            <a href="articles/artikel1.html" class="btn-read">Baca Selengkapnya</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80" alt="Artikel Mindfulness">
+          <div class="article-content">
+            <h3>Mindfulness Untuk Mahasiswa</h3>
+            <p>Cara sederhana agar tetap tenang saat banyak tugas dan deadline menumpuk.</p>
+            <a href="articles/artikel2.html" class="btn-read">Baca Selengkapnya</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Artikel Kebiasaan">
+          <div class="article-content">
+            <h3>Kebiasaan Kecil untuk Kesehatan Mental</h3>
+            <p>Menjadi 1% lebih baik setiap hari dengan kebiasaan sederhana namun berdampak.</p>
+            <a href="articles/artikel3.html" class="btn-read">Baca Selengkapnya</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=600&q=80" alt="Insomnia">
+          <div class="article-content">
+            <h3>Mengatasi Insomnia dan Gangguan Tidur</h3>
+            <p>Panduan lengkap untuk mendapatkan tidur berkualitas dan mengatasi insomnia.</p>
+            <a href="articles/artikel4.html" class="btn-read">Baca Selengkapnya</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80" alt="Kecemasan Sosial">
+          <div class="article-content">
+            <h3>Cara Menghadapi Kecemasan Sosial</h3>
+            <p>Strategi efektif untuk mengatasi rasa cemas dalam situasi sosial dan presentasi.</p>
+            <a href="articles/artikel5.html" class="btn-read">Baca Selengkapnya</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80" alt="Burnout">
+          <div class="article-content">
+            <h3>Tips Mengatasi Burnout Akademik</h3>
+            <p>Kenali tanda-tanda burnout dan cara mengatasinya sebelum terlambat.</p>
+            <a href="articles/artikel6.html" class="btn-read">Baca Selengkapnya</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=600&q=80" alt="Manajemen Waktu">
+          <div class="article-content">
+            <h3>Manajemen Waktu untuk Kesehatan Mental</h3>
+            <p>Cara mengatur waktu yang tidak hanya produktif, tapi juga sehat untuk mental.</p>
+            <a href="articles/artikel7.html" class="btn-read">Baca Selengkapnya</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Kepercayaan Diri">
+          <div class="article-content">
+            <h3>Cara Membangun Kepercayaan Diri</h3>
+            <p>Langkah praktis untuk meningkatkan rasa percaya diri dalam kehidupan sehari-hari.</p>
+            <a href="articles/artikel8.html" class="btn-read">Baca Selengkapnya</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=600&q=80" alt="Overthinking">
+          <div class="article-content">
+            <h3>Mengatasi Overthinking dan Pikiran Negatif</h3>
+            <p>Teknik untuk menghentikan siklus overthinking dan mengontrol pikiran negatif.</p>
+            <a href="articles/artikel9.html" class="btn-read">Baca Selengkapnya</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=600&q=80" alt="Teknik Pernapasan">
+          <div class="article-content">
+            <h3>Teknik Pernapasan untuk Meredakan Panik</h3>
+            <p>Latihan pernapasan sederhana yang bisa dilakukan kapan saja untuk menenangkan diri.</p>
+            <a href="articles/artikel10.html" class="btn-read">Baca Selengkapnya</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&q=80" alt="Self-Care">
+          <div class="article-content">
+            <h3>Pentingnya Self-Care dan Me Time</h3>
+            <p>Mengapa merawat diri sendiri bukan egois, dan bagaimana melakukannya dengan benar.</p>
+            <a href="articles/artikel11.html" class="btn-read">Baca Selengkapnya</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600&q=80" alt="Tekanan Keluarga">
+          <div class="article-content">
+            <h3>Cara Menghadapi Tekanan dari Keluarga</h3>
+            <p>Strategi untuk berkomunikasi dan menetapkan batasan yang sehat dengan keluarga.</p>
+            <a href="articles/artikel12.html" class="btn-read">Baca Selengkapnya</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=600&q=80" alt="Support System">
+          <div class="article-content">
+            <h3>Membangun Support System yang Sehat</h3>
+            <p>Cara menemukan dan membangun jaringan dukungan yang positif dan suportif.</p>
+            <a href="articles/artikel13.html" class="btn-read">Baca Selengkapnya</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1494587351196-bbf5f29cff42?w=600&q=80" alt="Tanda Depresi">
+          <div class="article-content">
+            <h3>Mengenal Tanda-tanda Depresi</h3>
+            <p>Pelajari cara mengenali gejala depresi pada diri sendiri dan orang lain.</p>
+            <a href="articles/artikel14.html" class="btn-read">Baca Selengkapnya</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&q=80" alt="Komunikasi">
+          <div class="article-content">
+            <h3>Cara Berkomunikasi dengan Efektif</h3>
+            <p>Keterampilan komunikasi yang sehat untuk hubungan yang lebih baik.</p>
+            <a href="articles/artikel15.html" class="btn-read">Baca Selengkapnya</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&q=80" alt="Ujian">
+          <div class="article-content">
+            <h3>Tips Menjaga Kesehatan Mental saat Ujian</h3>
+            <p>Strategi untuk tetap sehat mental selama periode ujian dan UTS/UAS.</p>
+            <a href="articles/artikel16.html" class="btn-read">Baca Selengkapnya</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=600&q=80" alt="Kesepian">
+          <div class="article-content">
+            <h3>Mengatasi Perasaan Kesepian</h3>
+            <p>Cara menghadapi dan mengatasi perasaan kesepian saat kuliah jauh dari rumah.</p>
+            <a href="articles/artikel17.html" class="btn-read">Baca Selengkapnya</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=600&q=80" alt="Self-Compassion">
+          <div class="article-content">
+            <h3>Self-Compassion: Menerima Diri Sendiri</h3>
+            <p>Belajar untuk lebih penyayang pada diri sendiri dan mengurangi kritik diri.</p>
+            <a href="articles/artikel18.html" class="btn-read">Baca Selengkapnya</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tips Harian -->
+  <section class="daily-tips" id="tips">
+    <div class="container">
+      <h2 class="section-title">Tips Harian</h2>
+      <p class="section-desc">Kiat sederhana untuk menjaga kesehatan mental setiap hari</p>
+
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-icon">🌞</div>
+          <h3>Mulai Hari dengan Positif</h3>
+          <p>Bangun lebih awal, tarik napas dalam, dan ucapkan syukur sebelum beraktivitas.</p>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-icon">💪</div>
+          <h3>Olahraga Rutin</h3>
+          <p>Saat berolahraga, tubuh menghasilkan endorfin yang membantu mengurangi stres dan meningkatkan mood.</p>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-icon">💧</div>
+          <h3>Minum Air Putih</h3>
+          <p>Pastikan tubuh tetap terhidrasi agar konsentrasi dan energi tetap terjaga sepanjang hari.</p>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-icon">🛌</div>
+          <h3>Tidur Cukup</h3>
+          <p>Usahakan tidur 7-8 jam setiap malam untuk kesehatan fisik dan mental yang optimal.</p>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-icon">🧘</div>
+          <h3>Meditasi & Relaksasi</h3>
+          <p>Luangkan 10-15 menit untuk meditasi atau latihan pernapasan setiap hari.</p>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-icon">📱</div>
+          <h3>Digital Detox</h3>
+          <p>Kurangi waktu di media sosial dan ambil jeda dari gadget secara berkala.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tentang Kami -->
+  <section class="about-us" id="tentang">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80" alt="Tentang MindCare">
+        </div>
+        <div class="about-text">
+          <h2>Tentang MindCare</h2>
+          <p>
+            <strong>MindCare</strong> adalah platform yang berfokus pada kesehatan mental mahasiswa. Kami hadir untuk memberikan ruang aman, informasi tepercaya, serta dukungan emosional bagi mahasiswa yang sedang menghadapi berbagai tantangan akademik, sosial, maupun pribadi.
+          </p>
+          <p>
+            Kami memahami bahwa masa perkuliahan bukan hanya tentang belajar di kelas, tetapi juga tentang mengenali diri, mengelola tekanan, dan menjaga keseimbangan hidup.
+          </p>
+          <p>
+            Banyak mahasiswa harus menghadapi stres, kecemasan, burnout, dan tuntutan lingkungan yang tidak selalu mudah — dan di sinilah <strong>MindCare</strong> berperan sebagai teman perjalanan Anda.
+          </p>
+          <div class="about-features">
+            <div class="feature-item">✅ Evaluasi Mandiri yang Aman</div>
+            <div class="feature-item">✅ Informasi Terpercaya</div>
+            <div class="feature-item">✅ Dukungan 24/7</div>
+            <div class="feature-item">✅ Privasi Terjamin</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>MindCare</h4>
+          <p>Platform kesehatan mental untuk mahasiswa Indonesia</p>
+        </div>
+        <div class="footer-section">
+          <h4>Kontak</h4>
+          <p>Email: info@mindcare.id</p>
+          <p>Hotline: 119 ext. 8</p>
+        </div>
+        <div class="footer-section">
+          <h4>Link Cepat</h4>
+          <a href="#assessment">Assessment</a>
+          <a href="#artikel">Artikel</a>
+          <a href="#tips">Tips</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 MindCare. Bersifat edukatif dan bukan pengganti diagnosis profesional.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript -->
+  <script src="script.js"></script>
+
+</body>
+</html>
