@@ -106,15 +106,32 @@ html {
 
 .nav__link {
   text-decoration: none;
-  color: var(--text-dark);
+  color: rgb(0, 0, 0);
   font-weight: 500;
   font-size: 0.95rem;
   transition: color 0.3s ease;
   position: relative;
 }
 
+.header.transparent .nav__burger {
+  color: #fff; /* putih */
+}
+
+.header.transparent .nav__close {
+  color: #fff;
+}
+
+
+.header.solid .nav__burger {
+  color: #000; /* hitam */
+}
+
+.header.solid .nav__close {
+  color: #000;
+}
+
 .header.transparent .nav__link {
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }
 
 .nav__link::after {
@@ -993,6 +1010,14 @@ section {
 
     transition: right 0.35s ease;
     z-index: 1000;
+  }
+
+  .header.transparent .nav__link {
+    color: rgb(0, 0, 0);
+  }
+
+  .header.transparent .nav__close {
+    color: rgb(0, 0, 0);
   }
 
   /* 🔑 INI YANG KAMU TANYA */
