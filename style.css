@@ -114,7 +114,7 @@ html {
 }
 
 .header.transparent .nav__link {
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .nav__link::after {
@@ -153,12 +153,14 @@ html {
 }
 
 .header.transparent .nav__toggle {
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .nav__close {
   display: none;
+  color: #000000;
 }
+
 
 .nav__toggle.show-icon .nav__burger {
   display: none;
