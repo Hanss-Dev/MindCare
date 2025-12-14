@@ -388,9 +388,8 @@ const likertPHQ = [
 const likertStress = [
   { value: 1, label: "Sangat tidak setuju" },
   { value: 2, label: "Tidak setuju" },
-  { value: 3, label: "Netral" },
-  { value: 4, label: "Setuju" },
-  { value: 5, label: "Sangat setuju" }
+  { value: 3, label: "Setuju" },
+  { value: 4, label: "Sangat setuju" }
 ];
 
 /* =====================================================
