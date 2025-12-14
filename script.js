@@ -5,25 +5,49 @@ const navMenu = document.getElementById('nav-menu');
 const navToggle = document.getElementById('nav-toggle');
 const navLinks = document.querySelectorAll('.nav__link');
 
-if(navToggle){
+if (navToggle) {
   navToggle.addEventListener('click', () => {
     navMenu.classList.toggle('show-menu');
     navToggle.classList.toggle('show-icon');
+
+    const header = document.getElementById('header');
+
+    // Saat menu dibuka
+    if (navMenu.classList.contains('show-menu')) {
+      header.classList.add('transparent');
+      header.classList.remove('solid');
+    }
   });
 }
+
 
 // Close menu when clicking nav link
 navLinks.forEach(link => {
   link.addEventListener('click', () => {
     navMenu.classList.remove('show-menu');
     navToggle.classList.remove('show-icon');
+
+    const header = document.getElementById('header');
+    if (window.scrollY > 50) {
+      header.classList.add('solid');
+      header.classList.remove('transparent');
+    }
   });
 });
+
 
 // Header scroll effect
 window.addEventListener('scroll', () => {
   const header = document.getElementById('header');
-  if(window.scrollY > 50){
+
+  // JIKA menu sedang terbuka → paksa transparan
+  if (navMenu.classList.contains('show-menu')) {
+    header.classList.add('transparent');
+    header.classList.remove('solid');
+    return;
+  }
+
+  if (window.scrollY > 50) {
     header.classList.remove('transparent');
     header.classList.add('solid');
   } else {
@@ -31,6 +55,7 @@ window.addEventListener('scroll', () => {
     header.classList.remove('solid');
   }
 });
+
 
 // =====================
 // HERO SLIDER
